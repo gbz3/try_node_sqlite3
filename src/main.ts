@@ -1,5 +1,5 @@
 import { initialize } from './db'
 
-const message = 'Hello TypeScript!!'
+const message = 'SELECT * FROM sqlite_master'
 
 initialize([message])
