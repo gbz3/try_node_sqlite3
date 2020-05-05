@@ -1,3 +1,5 @@
-const message = 'Hello TypeScript!!';
+import { initialize } from './db'
 
-console.log(message);
+const message = 'Hello TypeScript!!'
+
+initialize([message])

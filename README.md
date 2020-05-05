@@ -5,9 +5,10 @@
 ### Node.jsバージョン指定
 
 ```bash
-$ nodenv local 14.1.0
+$ nodenv install 12.16.3
+$ nodenv local 12.16.3
 $ node -v
-v14.1.0
+v12.16.3
 $ npm -v
 6.14.4
 ```
@@ -89,4 +90,14 @@ Built at: 05/05/2020 4:21:44 PM
 main.js  3.82 KiB    main  [emitted]  main
 Entrypoint main = main.js
 [./src/main.ts] 58 bytes {main} [built]
+```
+
+### sqlite3インストール
+
+```bash
+$ npm install --save node-pre-gyp
+$ npm install --save sqlite3 @types/sqlite3
+$ npm ls sqlite3
+try_node_sqlite3@1.0.0 /home/kashiba/git_repos/try_node_sqlite3
+└── sqlite3@4.2.0
 ```
