@@ -75,9 +75,18 @@ module.exports = {
 ### ビルド
 
 ```bash
+$ cat src/main.ts
+const message = 'Hello TypeScript!!';
+
+console.log(message);
 $ npm run build
 ...
-Insufficient number of arguments or no entry found.
-Alternatively, run 'webpack(-cli) --help' for usage info.
-...
+Hash: dc68df39a5ebc9ae5023
+Version: webpack 4.43.0
+Time: 667ms
+Built at: 05/05/2020 4:21:44 PM
+  Asset      Size  Chunks             Chunk Names
+main.js  3.82 KiB    main  [emitted]  main
+Entrypoint main = main.js
+[./src/main.ts] 58 bytes {main} [built]
 ```
