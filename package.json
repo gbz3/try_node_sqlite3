@@ -1,0 +1,28 @@
+{
+  "name": "try_node_sqlite3",
+  "version": "1.0.0",
+  "description": "## 環境設定",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gbz3/try_node_sqlite3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gbz3/try_node_sqlite3/issues"
+  },
+  "homepage": "https://github.com/gbz3/try_node_sqlite3#readme",
+  "devDependencies": {
+    "ts-loader": "^7.0.2",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "private": true
+}
