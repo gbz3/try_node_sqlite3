@@ -56,6 +56,7 @@ $ cat package.json
 ```javascript
 module.exports = {
   mode: "development",
+  target: 'node',
   entry: "./src/main.ts",
   module: {
     rules: [
@@ -98,6 +99,33 @@ Entrypoint main = main.js
 $ npm install --save node-pre-gyp
 $ npm install --save sqlite3 @types/sqlite3
 $ npm ls sqlite3
-try_node_sqlite3@1.0.0 /home/kashiba/git_repos/try_node_sqlite3
+try_node_sqlite3@1.0.0 $HOME/git_repos/try_node_sqlite3
 └── sqlite3@4.2.0
+```
+
+### webpackビルド
+
+```bash
+$ npm install --save aws-sdk
+$ npm run build
+Built at: 05/05/2020 6:42:16 PM
+  Asset      Size  Chunks             Chunk Names
+main.js  8.63 MiB    main  [emitted]  main
+Entrypoint main = main.js
+[./node_modules/sqlite3/lib sync recursive] ./node_modules/sqlite3/lib sync 160 bytes {main} [built]
+[./node_modules/sqlite3/node_modules/node-pre-gyp/lib sync recursive] ./node_modules/sqlite3/node_modules/node-pre-gyp/lib sync 160 bytes {main} [built]
+[./node_modules/sqlite3/node_modules/node-pre-gyp/lib sync recursive ^\.\/.*$] ./node_modules/sqlite3/node_modules/node-pre-gyp/lib sync ^\.\/.*$ 974 bytes {main} [built]
+[./node_modules/sqlite3/node_modules/node-pre-gyp/lib/util sync recursive] ./node_modules/sqlite3/node_modules/node-pre-gyp/lib/util sync 160 bytes {main} [built]
+[./src/db.ts] 199 bytes {main} [built]
+[./src/main.ts] 94 bytes {main} [built]
+[assert] external "assert" 42 bytes {main} [built]
+[child_process] external "child_process" 42 bytes {main} [built]
+[events] external "events" 42 bytes {main} [built]
+[fs] external "fs" 42 bytes {main} [built]
+[http] external "http" 42 bytes {main} [built]
+[path] external "path" 42 bytes {main} [built]
+[stream] external "stream" 42 bytes {main} [built]
+[url] external "url" 42 bytes {main} [built]
+[util] external "util" 42 bytes {main} [built]
+    + 1070 hidden modules
 ```
