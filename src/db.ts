@@ -9,7 +9,7 @@ export function initialize(sqls: string[]) {
     try {
       await db_run(`[] initialize`, 'BEGIN TRANSACTION', {})
       for (let i=0; i < sqls.length; i++) {
-        await db_run(`[${i}] initialize`, sqls[i], {})
+        await db_run(`[${i}] initialize`, sqls[i].replace(/\s+/g, ' '), {})
       }
       await db_run(`[] initialize`, 'COMMIT', {})
       resolve()
@@ -27,8 +27,12 @@ const db_run = (fn: string, sql: string, args: any) => {
     console.log(`${fn}(): "${sql}"`)
     db.run(sql, args, function(err) {
       // bind して this を書き換えるため、アロー関数は使用できない
-      err? (console.log(`  db_run => Failed. [${err}]`), reject(err)):
-        (console.log(`  db_run => Success. lastid=${this.lastID} changes=${this.changes}`), resolve({ lastid: this.lastID, changes: this.changes, fn }))
+      if (err) {
+        console.log(`  db_run => Failed. [${err}]`)
+        return reject(err)
+      }
+      console.log(`  db_run => Success. lastid=${this.lastID} changes=${this.changes}`)
+      return resolve({ lastid: this.lastID, changes: this.changes, fn })
     })
   })
 }
