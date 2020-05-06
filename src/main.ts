@@ -1,5 +1,5 @@
 import { initialize } from './db'
 
-const message = 'SELECT * FROM sqlite_master'
-
-initialize([message])
+initialize([
+  { sql: `SELECT * FROM sqlite_master`, params: {} }
+])
