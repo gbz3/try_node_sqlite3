@@ -5,7 +5,19 @@ const db = new sqlite3.Database(':memory:')
 export type Sql = { sql: string, params: any }
 
 export function initialize(sqls: string[]) {
-  sqls.forEach((s, i) => db_run(`[${i}] initialize`, s, {}))
+  return new Promise(async (resolve, reject) => {
+    try {
+      await db_run(`[] initialize`, 'BEGIN TRANSACTION', {})
+      for (let i=0; i < sqls.length; i++) {
+        await db_run(`[${i}] initialize`, sqls[i], {})
+      }
+      await db_run(`[] initialize`, 'COMMIT', {})
+      resolve()
+    } catch (err) {
+      await db_run(`[] initialize`, 'ROLLBACK', {})
+      reject(err)
+    }
+  })
 }
 
 
