@@ -20,6 +20,10 @@ $ npm -v
 ```bash
 $ npm init
 $ npm install --save-dev webpack webpack-cli typescript ts-loader
+$ npm install --save sqlite3 @types/sqlite3
+$ npm ls sqlite3
+try_node_sqlite3@1.0.0 $HOME/git_repos/try_node_sqlite3
+└── sqlite3@4.2.0
 $ vi package.json
 $ cat package.json
 ...
@@ -35,7 +39,11 @@ $ cat package.json
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@types/sqlite3": "^3.1.6",
+    "sqlite3": "^4.2.0"
+  }
 }
 ```
 
@@ -76,46 +84,22 @@ module.exports = {
 };
 ```
 
-### ビルド
+### ビルド&実行
 
 ```bash
-$ cat src/main.ts
-const message = 'Hello TypeScript!!';
-
-console.log(message);
-$ npm run build
+$ npm run build && node dist/main.js
 ...
-Hash: dc68df39a5ebc9ae5023
+Hash: a87ea7c5ff4f6452a3b0
 Version: webpack 4.43.0
-Time: 667ms
-Built at: 05/05/2020 4:21:44 PM
+Time: 1003ms
+Built at: 05/06/2020 11:42:10 AM
   Asset      Size  Chunks             Chunk Names
-main.js  3.82 KiB    main  [emitted]  main
+main.js  5.86 KiB    main  [emitted]  main
 Entrypoint main = main.js
-[./src/main.ts] 58 bytes {main} [built]
-```
-
-### sqlite3インストール
-
-```bash
-$ npm install --save node-pre-gyp
-$ npm install --save sqlite3 @types/sqlite3
-$ npm ls sqlite3
-try_node_sqlite3@1.0.0 $HOME/git_repos/try_node_sqlite3
-└── sqlite3@4.2.0
-```
-
-### webpackビルド
-
-```bash
-$ npm install --save aws-sdk
-$ npm run build
-...
-Built at: 05/06/2020 8:34:40 AM
-  Asset      Size  Chunks             Chunk Names
-main.js  5.23 KiB    main  [emitted]  main
-Entrypoint main = main.js
-[./src/db.ts] 183 bytes {main} [built]
-[./src/main.ts] 103 bytes {main} [built]
+[./src/db.ts] 797 bytes {main} [built]
+[./src/main.ts] 107 bytes {main} [built]
 [sqlite3] external "sqlite3" 42 bytes {main} [built]
+[0] initialize(): "SELECT * FROM sqlite_master"
+  db_run => Success. lastid=0 changes=0
 ```
+

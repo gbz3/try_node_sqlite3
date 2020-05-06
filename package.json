@@ -27,8 +27,6 @@
   "private": true,
   "dependencies": {
     "@types/sqlite3": "^3.1.6",
-    "aws-sdk": "^2.669.0",
-    "node-pre-gyp": "^0.14.0",
     "sqlite3": "^4.2.0"
   }
 }
