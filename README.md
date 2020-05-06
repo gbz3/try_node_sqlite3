@@ -102,4 +102,3 @@ Entrypoint main = main.js
 [0] initialize(): "SELECT * FROM sqlite_master"
   db_run => Success. lastid=0 changes=0
 ```
-

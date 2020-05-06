@@ -4,8 +4,8 @@ const db = new sqlite3.Database(':memory:')
 
 export type Sql = { sql: string, params: any }
 
-export function initialize(sqls: Sql[]) {
-  sqls.forEach((s, i) => db_run(`[${i}] initialize`, s.sql, s.params))
+export function initialize(sqls: string[]) {
+  sqls.forEach((s, i) => db_run(`[${i}] initialize`, s, {}))
 }
 
 

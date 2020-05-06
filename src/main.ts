@@ -1,5 +1,8 @@
+import * as yaml from 'js-yaml'
+import * as fs from 'fs'
+
 import { initialize } from './db'
 
-initialize([
-  { sql: `SELECT * FROM sqlite_master`, params: {} }
-])
+const config = yaml.safeLoad(fs.readFileSync('dist/config.yml', 'utf-8'))
+
+initialize(config.database.initialize_sqls);
