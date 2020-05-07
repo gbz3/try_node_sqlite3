@@ -4,17 +4,17 @@ const db = new sqlite3.Database(':memory:')
 
 export type Sql = { sql: string, params: any }
 
-export function initialize(sqls: string[]) {
+export function initialize(sqls: string[]):Promise<void> {
   return new Promise(async (resolve, reject) => {
     try {
-      await db_run(`[] initialize`, 'BEGIN TRANSACTION', {})
+      await db_run(`initialize`, 'BEGIN TRANSACTION', {})
       for (let i=0; i < sqls.length; i++) {
-        await db_run(`[${i}] initialize`, sqls[i].replace(/\s+/g, ' '), {})
+        await db_run(`initialize[${i}]@T`, sqls[i].replace(/\s+/g, ' '), {})
       }
-      await db_run(`[] initialize`, 'COMMIT', {})
+      await db_run(`initialize`, 'COMMIT', {})
       resolve()
     } catch (err) {
-      await db_run(`[] initialize`, 'ROLLBACK', {})
+      await db_run(`initialize`, 'ROLLBACK', {})
       reject(err)
     }
   })
@@ -22,9 +22,9 @@ export function initialize(sqls: string[]) {
 
 
 // 1行実行ヘルパー
-const db_run = (fn: string, sql: string, args: any) => {
+const db_run = (fn: string, sql: string, args: any):Promise<{ lastid: number, changes: number, fn: string }> => {
   return new Promise((resolve, reject) => {
-    console.log(`${fn}(): "${sql}"`)
+    console.log(`${fn}(): "${sql}"${args? `, ${JSON.stringify(args)}`: ''}`)
     db.run(sql, args, function(err) {
       // bind して this を書き換えるため、アロー関数は使用できない
       if (err) {
